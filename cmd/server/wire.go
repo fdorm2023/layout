@@ -6,10 +6,10 @@
 package main
 
 import (
-	"f-dorm/app/server/internal/biz"
-	"f-dorm/app/server/internal/data"
-	"f-dorm/app/server/internal/server"
-	"f-dorm/app/server/internal/service"
+	"f-dorm/app/demo/internal/biz"
+	"f-dorm/app/demo/internal/data"
+	"f-dorm/app/demo/internal/server"
+	"f-dorm/app/demo/internal/service"
 
 	"f-dorm/core/app"
 	"github.com/go-kratos/kratos/v2"

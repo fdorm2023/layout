@@ -3,7 +3,7 @@ package data
 import (
 	"context"
 	v1 "f-dorm/api/user/v1"
-	"f-dorm/app/server/internal/biz"
+	"f-dorm/app/demo/internal/biz"
 	"f-dorm/core/app"
 	"f-dorm/core/const/codename"
 	"github.com/go-kratos/kratos/v2/log"
