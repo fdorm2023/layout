@@ -1,0 +1,23 @@
+server:
+  http:
+    addr: 0.0.0.0:8000
+    timeout: 15
+  grpc:
+    addr: 0.0.0.0:9000
+    timeout: 15
+data:
+  database:
+    driver: mysql
+    user: dev
+    password: dev
+    protocol: tcp
+    host: localhost
+    port: 3306
+    schema: fdorm
+  redis:
+    network: tcp
+    address: 127.0.0.1:6379
+    db: 0
+registry:
+  address: localhost:8500
+  schema: http

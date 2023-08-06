@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  demo:
+    image: docker.lvdsoft.com/fdorm.service.demo:0.0.1
+    command:
+      -name=demo 
+      -version=1.0.0 
+      -sd-address=consul.lvdsoft.com 
+      -grpc-endpoint=demo.lvdsoft.me:1443 
+      -config-type=file 
+      -config-file-path=configs 
+      -config-file=config 
+      -config-remote-address=consul.lvdsoft.com 
+      -config-remote-schema=https
+    volumes:
+      - ./demo:/app/configs
+      - ./traefik/cert.pem:/app/core/app/client.cert
+    extra_hosts:
+      - "host_machine:host-gateway"
+    networks:
+      - fdorm-net
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.demo.service=demo"
+        - "traefik.http.routers.demo.rule=Host(`api.lvdsoft.com`) && PathPrefix(`/demo`)"
+        - "traefik.http.routers.demo.entrypoints=web"
+        - "traefik.http.services.demo.loadbalancer.server.port=8000"
+        - "traefik.http.routers.demogrpc.service=demogrpc"
+        - "traefik.http.routers.demogrpc.entrypoints=grpc"
+        - "traefik.http.routers.demogrpc.rule=Host(`demo.lvdsoft.me`)"
+        - "traefik.http.services.demogrpc.loadbalancer.server.scheme=h2c"
+        - "traefik.http.services.demogrpc.loadbalancer.server.port=9000"
+networks:
+  fdorm-net:
+    name: fdorm-net
+    driver: overlay
