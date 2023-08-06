@@ -25,7 +25,7 @@ services:
       replicas: 1
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.demo.service=demo"
+        - "traefik.http.routers.demo.service=server"
         - "traefik.http.routers.demo.rule=Host(`api.lvdsoft.com`) && PathPrefix(`/demo`)"
         - "traefik.http.routers.demo.entrypoints=web"
         - "traefik.http.services.demo.loadbalancer.server.port=8000"

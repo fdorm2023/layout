@@ -2,7 +2,7 @@ package service
 
 import (
 	"context"
-	"f-dorm/app/demo/internal/biz"
+	"f-dorm/app/server/internal/biz"
 
 	pb "f-dorm/api/demo/v1"
 )

@@ -3,27 +3,11 @@ module github.com/fdorm2023/layout
 go 1.18
 
 require (
-	firebase.google.com/go v3.13.0+incompatible
-	github.com/ThreeDotsLabs/watermill v1.2.0
-	github.com/ThreeDotsLabs/watermill-amqp/v2 v2.0.7
-	github.com/go-kratos/kratos/contrib/registry/consul/v2 v2.0.0-20230616115456-fcd3b18e8344
 	github.com/go-kratos/kratos/v2 v2.6.2
-	github.com/golang-jwt/jwt/v4 v4.4.1
-	github.com/golang-migrate/migrate/v4 v4.15.2
 	github.com/google/wire v0.5.0
-	github.com/hashicorp/consul/api v1.20.0
-	github.com/nyaruka/phonenumbers v1.1.6
-	github.com/rs/zerolog v1.29.1
 	github.com/spf13/viper v1.15.0
 	go.uber.org/automaxprocs v1.5.1
-	golang.org/x/crypto v0.0.0-20220525230936-793ad666bf5e
-	google.golang.org/api v0.107.0
-	google.golang.org/genproto v0.0.0-20221227171554-f9683d7f8bef
-	google.golang.org/grpc v1.52.0
 	google.golang.org/protobuf v1.28.1
-	gopkg.in/yaml.v2 v2.4.0
-	gorm.io/driver/mysql v1.5.0
-	gorm.io/gorm v1.25.1
 )
 
 require (
