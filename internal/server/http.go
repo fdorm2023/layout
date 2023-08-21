@@ -4,6 +4,7 @@ import (
 	v1 "f-dorm/api/demo/v1"
 	"f-dorm/app/demo/internal/conf"
 	"f-dorm/app/demo/internal/service"
+	"f-dorm/core/middleware"
 	"github.com/go-kratos/kratos/v2/middleware/recovery"
 	"github.com/go-kratos/kratos/v2/transport/http"
 	"github.com/spf13/viper"
@@ -19,6 +20,7 @@ func NewHTTPServer(greeter *service.DemoService) *http.Server {
 	var opts = []http.ServerOption{
 		http.Middleware(
 			recovery.Recovery(),
+			middleware.CORSMiddleware(),
 		),
 	}
 	if c.Http.Network != "" {
