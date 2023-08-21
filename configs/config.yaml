@@ -21,22 +21,3 @@ data:
 registry:
   address: localhost:8500
   schema: http
-jwt:
-  secret: 0123456789ABCDEF0123456789ABCDEF
-  issuer: api
-  expired: 10
-  refresh_expired: 525600
-otp:
-  expired: 5
-  length: 6
-twilio:
-  username: AC8b78134f5c6d02dd75cc1d3da482af0c
-  password: b3625c70871725fa694b19b84eb0bbad
-  phone_number: +19284558441
-speedsms:
-  base_url: https://api.speedsms.vn
-  access_token: ynfIEpaa5KTwffR2FfBvMtEsjo9FlFFP
-  type: 5
-  sender: c51ed19c5a2368b9
-user:
-  age_small: 12

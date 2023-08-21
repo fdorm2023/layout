@@ -4,7 +4,6 @@ import (
 	v1 "f-dorm/api/demo/v1"
 	"f-dorm/app/demo/internal/conf"
 	"f-dorm/app/demo/internal/service"
-	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/middleware/recovery"
 	"github.com/go-kratos/kratos/v2/transport/grpc"
 	"github.com/spf13/viper"
@@ -12,7 +11,7 @@ import (
 )
 
 // NewGRPCServer new a gRPC server.
-func NewGRPCServer(greeter *service.DemoService, logger log.Logger) *grpc.Server {
+func NewGRPCServer(greeter *service.DemoService) *grpc.Server {
 	c := &conf.Server{}
 	if err := viper.UnmarshalKey("server", &c); err != nil {
 		panic(err)
