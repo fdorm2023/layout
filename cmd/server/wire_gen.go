@@ -28,16 +28,16 @@ func wireApp() (*kratos.App, func(), error) {
 		return nil, nil, err
 	}
 	logger := app.NewLogger(appApp)
-	dataData, cleanup, err := data.NewData(logger)
+	discovery := app.NewDiscovery()
+	dataData, cleanup, err := data.NewData(logger, discovery)
 	if err != nil {
 		return nil, nil, err
 	}
-	discovery := app.NewDiscovery()
-	greeterRepo := data.NewGreeterRepo(dataData, logger, discovery)
-	greeterUsecase := biz.NewGreeterUsecase(greeterRepo, logger)
+	greeterRepo := data.NewGreeterRepo(dataData)
+	greeterUsecase := biz.NewGreeterUsecase(greeterRepo)
 	demoService := service.NewDemoService(greeterUsecase)
-	httpServer := server.NewHTTPServer(demoService, logger)
-	grpcServer := server.NewGRPCServer(demoService, logger)
+	httpServer := server.NewHTTPServer(demoService)
+	grpcServer := server.NewGRPCServer(demoService)
 	registrar := app.NewRegistrar()
 	kratosApp := newApp(appApp, logger, httpServer, grpcServer, registrar)
 	return kratosApp, func() {

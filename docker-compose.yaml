@@ -8,11 +8,12 @@ services:
       -version=1.0.0 
       -sd-address=consul.lvdsoft.com 
       -grpc-endpoint=demo.lvdsoft.me:1443 
-      -config-type=file 
+      -config-type=remote 
       -config-file-path=configs 
       -config-file=config 
       -config-remote-address=consul.lvdsoft.com 
       -config-remote-schema=https
+      -config-remote-keys=/common/config.yaml,/authentication/config.yaml,/database/config.yaml
     volumes:
       - ./demo:/app/configs
       - ./traefik/cert.pem:/app/core/app/client.cert

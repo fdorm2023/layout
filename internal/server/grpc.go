@@ -4,8 +4,11 @@ import (
 	v1 "f-dorm/api/demo/v1"
 	"f-dorm/app/demo/internal/conf"
 	"f-dorm/app/demo/internal/service"
+	"github.com/go-kratos/kratos/v2/middleware/auth/jwt"
+	"github.com/go-kratos/kratos/v2/middleware/metadata"
 	"github.com/go-kratos/kratos/v2/middleware/recovery"
 	"github.com/go-kratos/kratos/v2/transport/grpc"
+	jwtv4 "github.com/golang-jwt/jwt/v4"
 	"github.com/spf13/viper"
 	"time"
 )
@@ -16,9 +19,17 @@ func NewGRPCServer(greeter *service.DemoService) *grpc.Server {
 	if err := viper.UnmarshalKey("server", &c); err != nil {
 		panic(err)
 	}
+	grpcSecurityKey := viper.GetString("security_key")
+	if grpcSecurityKey == "" {
+		panic("need grpc security key")
+	}
 	var opts = []grpc.ServerOption{
 		grpc.Middleware(
 			recovery.Recovery(),
+			metadata.Server(),
+			jwt.Server(func(token *jwtv4.Token) (interface{}, error) {
+				return []byte(grpcSecurityKey), nil
+			}),
 		),
 	}
 	if c.Grpc.Network != "" {
